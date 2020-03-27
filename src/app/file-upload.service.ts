@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { throwError, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -12,12 +12,12 @@ export class FileUploadService {
     headers: {
       'Content-Type':  'multipart/form-data'
     },
-    responseType: 'text'
+    responseType: 'blob'
   };
 
   constructor(private http: HttpClient) { }
 
-  postFile(fileToUpload: File) {
+  postFile(fileToUpload: File): Observable<any> {
     const endpoint = 'http://localhost:8080/file-upload';
     const formData: FormData = new FormData();
     formData.append('fileKey', fileToUpload, fileToUpload.name);
