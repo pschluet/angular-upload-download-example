@@ -1,0 +1,10 @@
+<form [formGroup]="s3Form" (ngSubmit)="downloadFile()">
+  <h3>S3 Download</h3>
+
+  <label>
+    File Name:
+    <input type="text" formControlName="fileName">
+  </label><br>
+  <button type="submit" [disabled]="!s3Form.valid">Submit</button>
+
+</form>
